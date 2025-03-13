@@ -315,11 +315,11 @@ public class MyArrayList extends AbstractList<Object>
 	public ListIterator<Object> listIterator(int index) {
 		if (index < 0 || index > size)
 			throw new IndexOutOfBoundsException("Index: " + index);
-		return new AbstractList.ListItr(this, index);
+		return new ListItr(this, index);
 	}
 
 	public ListIterator<Object> listIterator() {
-		return new AbstractList.ListItr(this, 0);
+		return new ListItr(this, 0);
 	}
 
 	public Iterator<Object> iterator() {

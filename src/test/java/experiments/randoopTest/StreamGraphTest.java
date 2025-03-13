@@ -1,7 +1,5 @@
 package experiments.randoopTest;
 
-import experiments.*;
-
 import net.jqwik.api.*;
 import net.jqwik.api.randoop.*;
 
