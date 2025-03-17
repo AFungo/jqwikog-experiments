@@ -40,7 +40,8 @@ experiments = ["PatriciaTrieTest.testPrefixMap", "PatriciaTrieTest.testCopy",
                "BitSetTest.flipTest", "NodeCachingLinkedListTest.nclTest",
                "StreamGraphTest.testVector2DotProduct", "StreamGraphTest.testVector2Normalize", "StreamGraphTest.testWelshPowellColoring",
                "TreeTest.treeContainsTest", "metamorphic.NumberFormatStringTokenizerTest.test1", "metamorphic.NumberFormatStringTokenizerTest.test2",
-               "metamorphic.StackArTest.test1", "metamorphic.StackTest.test1"
+               "metamorphic.StackArTest.test1", "metamorphic.StackTest.test1",
+               "PilasTest.pilaSizeTest"
                ]
 
 #"JgraphtTest.testPrim"
