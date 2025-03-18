@@ -26,14 +26,14 @@ public class TreeTest {
 		return true;
 	}
 
-	//@UseMethods(methods = {"insert"})
 	@Property
 	public void treeContainsTest(
-		@ForAll @IntRange(min = 200, max = 300) @AssumeMethod(className = TreeTest.class, methodName = "noElementsFrom0to100InTree")
+		@ForAll @UseMethods(methods = {"insert"}) @IntRange(min = 200, max = 300)
 		BinaryTree b,
 		@ForAll @Size(max=100) Set<@IntRange(min=0, max=100) Integer> elements,
 		@ForAll @Size(max=100) Set<@IntRange(min=0, max=100) Integer> queries
 	) {
+		Assume.that(TreeTest.noElementsFrom0to100InTree(b));
 		for (Integer e : elements) {
 			b.insert(e);
 		}

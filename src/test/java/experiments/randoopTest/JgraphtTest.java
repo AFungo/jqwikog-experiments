@@ -26,12 +26,13 @@ public class JgraphtTest {
 		return new ConnectivityInspector(graph).isConnected() && graph.vertexSet().size() > 1 && graph.edgeSet().size() > 1;
 	}
 
-	//@UseMethods(methods = {"addEdge", "addVertex", "setEdgeSupplier", "setVertexSupplier"})
+	//
+	//@AssumeMethod(className =  JgraphtTest.class, methodName = "graphIsConnected")
 	@Property
-	public void testPrim(@ForAll @AssumeMethod(className =  JgraphtTest.class, methodName = "graphIsConnected")
+	public void testPrim(@ForAll @UseMethods(methods = {"addEdge", "addVertex", "setEdgeSupplier", "setVertexSupplier"})
 						 @Deps(classes={MySuplier.class}) @IntRange(max=5)
 						 DefaultDirectedGraph<Integer, Integer> graph) {
-		Assume.that(graph != null);
+		Assume.that(JgraphtTest.graphIsConnected(graph));
 		int graphSize = graph.vertexSet().size();
 
 		// Assume.assumeTrue(new ConnectivityInspector(graph).isGraphConnected());

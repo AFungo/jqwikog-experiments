@@ -24,11 +24,10 @@ public class DateTest {
 		return cal.get(Calendar.MONTH) == Calendar.DECEMBER && cal.get(Calendar.DAY_OF_MONTH) == 31;
 	}
 
+	//@AssumeMethod(className = DateTest.class, methodName = "isNewYear")
 	@Property
-	void changeYearTest(@ForAll
-						@AssumeMethod(className = DateTest.class, methodName = "isNewYear")
-						Date date) {
-		Assume.that(date != null);
+	void changeYearTest(@ForAll Date date) {
+		Assume.that(DateTest.isNewYear(date));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int year = cal.get(Calendar.YEAR);
@@ -52,10 +51,10 @@ public class DateTest {
 			   cal.get(Calendar.MONTH) == Calendar.DECEMBER;
 	}
 
+	//@AssumeMethod(className = DateTest.class, methodName = "are31daysLongMonth")
 	@Property
-	void longMonthTest(@ForAll
-						@AssumeMethod(className = DateTest.class, methodName = "are31daysLongMonth")
-						Date date) {
+	void longMonthTest(@ForAll Date date) {
+		Assume.that(DateTest.are31daysLongMonth(date));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -73,10 +72,11 @@ public class DateTest {
 		return !are31daysLongMonth(d) && cal.get(Calendar.MONTH)!= Calendar.FEBRUARY;
 	}
 
+//	@AssumeMethod(className = DateTest.class, methodName = "are30daysLongMonth")
 	@Property
 	void mediumMonthTest(@ForAll
-					   @AssumeMethod(className = DateTest.class, methodName = "are30daysLongMonth")
 					   Date date) {
+		Assume.that(DateTest.are30daysLongMonth(date));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -84,7 +84,7 @@ public class DateTest {
 		Assertions.assertThat(day).isGreaterThanOrEqualTo(1);
 	}
 
-	public static boolean areFebruary(Object o){
+	public static boolean isFebruary(Object o){
 		if(o == null){
 			return false;
 		}
@@ -102,10 +102,11 @@ public class DateTest {
 		} else return year % 100 != 0;
 	}
 
+//	@AssumeMethod(className = DateTest.class, methodName = "isFebruary")
 	@Property
 	void februaryMonthTest(@ForAll
-						 @AssumeMethod(className = DateTest.class, methodName = "are30daysLongMonth")
 						 Date date) {
+		Assume.that(DateTest.isFebruary(date));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int day = cal.get(Calendar.DAY_OF_MONTH);

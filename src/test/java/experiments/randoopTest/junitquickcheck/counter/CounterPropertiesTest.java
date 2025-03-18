@@ -28,19 +28,20 @@ package experiments.randoopTest.junitquickcheck.counter;
 import junitquickcheck.counter.*;
 
 import net.jqwik.api.*;
+import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.Assertions;
 
 
 
 public class CounterPropertiesTest {
     @Property
-	public void incrementing(@ForAll Counter c) {
+	public void incrementing(@ForAll @UseMethods(methods = {"increment", "decrement"}) Counter c) {
         int count = c.count();
         Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
     }
 
     @Property
-	public void decrementing(@ForAll Counter c) {
+	public void decrementing(@ForAll @UseMethods(methods = {"increment", "decrement"}) Counter c) {
         int count = c.count();
         Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
     }

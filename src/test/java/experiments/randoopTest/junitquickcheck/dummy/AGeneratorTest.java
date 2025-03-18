@@ -21,8 +21,8 @@ public class AGeneratorTest {
 	}
 
     @Property
-	public void listAreCorrectlyGenerated(@ForAll @AssumeMethod(className = AGeneratorTest.class, methodName = "listOfBNotNull") @Deps(classes = {B.class, ArrayList.class}) A a) {
-		Assume.that(a != null);
+	public void listAreCorrectlyGenerated(@ForAll @Deps(classes = {B.class, ArrayList.class}) @UseMethods(methods = {"setListOfB"}) A a) {
+		Assume.that(AGeneratorTest.listOfBNotNull(a));
         a.getListOfB().forEach(b ->
 								   Assertions.assertThat(b).isInstanceOf(B.class));
     }

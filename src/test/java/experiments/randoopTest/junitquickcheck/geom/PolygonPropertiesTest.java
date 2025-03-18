@@ -42,15 +42,15 @@ public class PolygonPropertiesTest {
 		return polygon.convex();
 	}
 
+	//@AssumeMethod(className = PolygonPropertiesTest.class, methodName = "polygonIsConvex")
 	@Property
 	public void convexity(
-		@AssumeMethod(className = PolygonPropertiesTest.class, methodName = "polygonIsConvex")
         @ForAll Polygon polygon,
 		@ForAll Point p,
 		@ForAll Point q,
 		@ForAll double alpha) {
 
-		Assume.that(polygon != null);
+		Assume.that(PolygonPropertiesTest.polygonIsConvex(polygon));
 		Assume.that(polygon.contains(p));
 		Assume.that(polygon.contains(q));
 

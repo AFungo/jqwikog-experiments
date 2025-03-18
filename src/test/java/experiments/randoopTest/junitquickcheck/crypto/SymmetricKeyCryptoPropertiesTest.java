@@ -26,7 +26,6 @@
 package experiments.randoopTest.junitquickcheck.crypto;
 
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 
 import junitquickcheck.crypto.*;
 

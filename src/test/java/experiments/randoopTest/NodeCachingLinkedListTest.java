@@ -12,7 +12,7 @@ import org.assertj.core.api.*;
 public class NodeCachingLinkedListTest {
 	//@UseMethods(methods = {"addFirst"})
 	@Property
-	public void nclTest(@ForAll NodeCachingLinkedList ncl,
+	public void nclTest(@ForAll @UseMethods(methods = {"addFirst"}) NodeCachingLinkedList ncl,
 						@ForAll @IntRange(min=1, max=4) Integer indexToRemove){
 		Assume.that(ncl.size() > indexToRemove);
 		Assume.that(!ncl.cacheIsFull());

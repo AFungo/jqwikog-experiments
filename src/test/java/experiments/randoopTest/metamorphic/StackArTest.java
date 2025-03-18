@@ -2,9 +2,11 @@ package experiments.randoopTest.metamorphic;
 
 import epa.*;
 
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.randoop.AssumeMethod;
+import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.Assertions;
 import randoop.com.google.gson.*;
 
@@ -23,9 +25,8 @@ public class StackArTest {
 	}
 
 	@Property
-	public void test1(@ForAll
-					  @AssumeMethod(className = StackArTest.class, methodName = "EPAPrecondition")
-						  StackAr s){
+	public void test1(@ForAll @UseMethods(methods = {"push"}) StackAr s){
+		Assume.that(StackArTest.EPAPrecondition(s));
 		// Gson gson = new Gson();
 		Gson gson = new GsonBuilder()
 						.registerTypeAdapter(Class.class, new JsonSerializer<Class>() {

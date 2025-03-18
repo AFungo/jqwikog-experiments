@@ -22,7 +22,7 @@ def run_experiment(script_path, file_path, timeout=60):
         if result.returncode == 0:
             print(file_path, " ", execution_time, " ", objects_amount, " si ", 60*30)
         else:
-            print(file_path, " ", "fallo", " ", result.stderr)
+            print(file_path, " ", "fallo", " \n", result.stderr, " \n", result.stdout)
 
     except subprocess.TimeoutExpired:
         print(file_path, " timeout ")

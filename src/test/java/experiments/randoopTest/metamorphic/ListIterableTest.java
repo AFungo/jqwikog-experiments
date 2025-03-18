@@ -26,11 +26,10 @@ public class ListIterableTest {
 	}
 
 	@Property
-	public void test1(@ForAll
-					  @AssumeMethod(className = ListIterableTest.class, methodName = "EPAPrecondition")
-						  ListItr itr){
+	public void test1(@ForAll @Deps(classes = {MyArrayList.class}) @UseMethods(methods = {"add"}) ListItr itr){
 
 		// Gson gson = new Gson();
+		Assume.that(ListIterableTest.EPAPrecondition(itr));
 		Gson gson = new GsonBuilder()
 						.registerTypeAdapter(Class.class, new JsonSerializer<Class>() {
 							@Override
@@ -49,10 +48,9 @@ public class ListIterableTest {
 	}
 
 	@Property
-	public void test2(@ForAll
-					  @AssumeMethod(className = ListIterableTest.class, methodName = "EPAPrecondition")
+	public void test2(@ForAll @Deps(classes = {MyArrayList.class}) @UseMethods(methods = {"add"})
 					  ListItr itr){
-		Assume.that(itr != null);
+		Assume.that(ListIterableTest.EPAPrecondition(itr));
 		Gson gson = new Gson();
 		ListItr obj2 = gson.fromJson(gson.toJson(itr), ListItr.class);
 

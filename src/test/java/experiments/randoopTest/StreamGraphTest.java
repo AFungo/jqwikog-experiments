@@ -13,15 +13,15 @@ import static java.lang.Math.*;
 public class StreamGraphTest {
 	//@UseMethods(methods = "set")
 	@Property
-	void testVector2DotProduct(@ForAll  Vector2 vector1,
-							   @ForAll Vector2 vector2) {
+	void testVector2DotProduct(@ForAll @UseMethods(methods = "set")  Vector2 vector1,
+							   @ForAll @UseMethods(methods = "set") Vector2 vector2) {
 		Assertions.assertThat(vector1.dotProduct(vector2)).
 				  isEqualTo(vector2.dotProduct(vector1));
 	}
 
 	//@UseMethods(methods = "set")
 	@Property
-	void testVector2Normalize(@ForAll  Vector2 vector1) {
+	void testVector2Normalize(@ForAll @UseMethods(methods = "set") Vector2 vector1) {
 		double x = vector1.x();
 		double y = vector1.y();
 		Assertions.assertThat(vector1.normalize()).
@@ -29,18 +29,17 @@ public class StreamGraphTest {
 	}
 
 	public static boolean graphSize(Object o){
-		// if(o == null) return false;
+		if(o == null) return false;
 		DefaultGraph graph = (DefaultGraph) o;
 		return graph.getEdgeCount() > 4;
 	}
 
-	//@UseMethods(methods = {"addEdge", "addNode"})
 	@Property
-	void testWelshPowellColoring(@ForAll
+	void testWelshPowellColoring(@ForAll @UseMethods(methods = {"addEdge", "addNode"})
 								 @AssumeMethod(className = StreamGraphTest.class, methodName = "graphSize")
 								 @RandoopStrings(strings = {"hola", "chau", "mundo", "hello", "bay"})
 								 DefaultGraph graph) {
-		Assume.that(graph != null);
+		Assume.that(StreamGraphTest.graphSize(graph));
 		WelshPowell alg = new WelshPowell();
 		alg.init(graph);
 		alg.compute();
