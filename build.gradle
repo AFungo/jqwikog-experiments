@@ -20,4 +20,5 @@ test {
     useJUnitPlatform{
         includeEngines 'jqwik'
     }
+    testLogging.showStandardStreams = true
 }
