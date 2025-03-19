@@ -31,6 +31,7 @@ package experiments.randoopTest;
 
 import net.jqwik.api.*;
 
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.randoop.*;
 
 import net.jqwik.engine.hooks.lifecycle.*;
@@ -63,8 +64,10 @@ public class PatriciaTrieTest{
 
 	@Property
 	public void testPrefixMap(@ForAll @UseMethods(methods = {"put"})
+							  @IntRange(min=0, max=25)
 							  @RandoopStrings(strings = {"apple", "applet", "application", "banana", "bandana",
-														"blueberry", "bluefish", "grapefruit", "grapevine", "peach"})
+														"blueberry", "bluefish", "grapefruit", "grapevine", "peach",
+									  					"app", "ban", "blue", "grape"})
 								  TreeMap<String, Integer>  map,
 							  @ForAll("prefixesProvider") String prefix) {
 		// Create new trie with input `map`
@@ -87,7 +90,9 @@ public class PatriciaTrieTest{
 	}
 
 	@Property
-	public void testCopy(@ForAll @RandoopStrings(strings = {"hola", "chau", "mundo", "hello", "bay"})
+	public void testCopy(@ForAll @RandoopStrings(strings = {"hola", "chau", "mundo", "hello", "bay", "apple", "applet", "application", "banana", "bandana",
+									 "blueberry", "bluefish", "grapefruit", "grapevine", "peach", "app", "ban", "blue", "grape"})
+						 @IntRange(min=0, max=25)
 						 @UseMethods(methods = {"put"}) TreeMap<String, Integer> map,
 						 @ForAll("randoopStrings") String key) {
 		Assume.that(map.containsKey(key));

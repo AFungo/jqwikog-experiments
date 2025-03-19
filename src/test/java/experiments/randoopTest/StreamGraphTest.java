@@ -11,7 +11,7 @@ import org.graphstream.ui.geom.*;
 import static java.lang.Math.*;
 
 public class StreamGraphTest {
-	//@UseMethods(methods = "set")
+
 	@Property
 	void testVector2DotProduct(@ForAll @UseMethods(methods = "set")  Vector2 vector1,
 							   @ForAll @UseMethods(methods = "set") Vector2 vector2) {
@@ -19,7 +19,6 @@ public class StreamGraphTest {
 				  isEqualTo(vector2.dotProduct(vector1));
 	}
 
-	//@UseMethods(methods = "set")
 	@Property
 	void testVector2Normalize(@ForAll @UseMethods(methods = "set") Vector2 vector1) {
 		double x = vector1.x();

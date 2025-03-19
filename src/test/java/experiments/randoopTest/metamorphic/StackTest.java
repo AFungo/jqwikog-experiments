@@ -5,6 +5,7 @@ import epa.*;
 import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.randoop.AssumeMethod;
 import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.Assertions;
@@ -24,7 +25,7 @@ public class StackTest {
 	}
 
 	@Property
-	public void test1(@ForAll @UseMethods(methods = {"addElement"}) Stack<Integer> s){
+	public void test1(@ForAll @UseMethods(methods = {"addElement"}) @IntRange(min = 0, max = 25) Stack<Integer> s){
 		Assume.that(StackTest.EPAPrecondition(s));
 		Gson gson = new Gson();
 		Type stackType = new TypeToken<Stack<Integer>>() {}.getType();
