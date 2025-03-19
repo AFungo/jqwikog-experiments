@@ -7,6 +7,7 @@ import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.randoop.AssumeMethod;
 
+import net.jqwik.api.randoop.RandoopStrings;
 import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.Assertions;
 import randoop.com.google.gson.Gson;
@@ -23,8 +24,11 @@ public class NumberFormatStringTokenizerTest {
 			&& itr.isHasMoreTokensEnabled() && itr.isNextIsSepEnabled();
 	}
 
+	//@UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
 	@Property
-	public void test1(@ForAll @UseMethods(methods = {"nextToken"}) NumberFormatStringTokenizer tok){
+	public void test1(@ForAll @UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
+						  @RandoopStrings(strings = {"n-e!x*t#T.o[k}e?n", "h-o$l(a", "m!u|n°d,o", ";hel-lo-", "!wo&rl/d", "app--le", "banana"})
+						  NumberFormatStringTokenizer tok){
 		Assume.that(NumberFormatStringTokenizerTest.EPAPrecondition(tok));
 		Gson gson = new Gson();
 		NumberFormatStringTokenizer obj2 = gson.fromJson(gson.toJson(tok), NumberFormatStringTokenizer.class);
@@ -45,7 +49,9 @@ public class NumberFormatStringTokenizerTest {
 	}
 
 	@Property
-	public void test2(@ForAll @UseMethods(methods = {"nextToken"}) NumberFormatStringTokenizer tok){
+	public void test2(@ForAll @UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
+						  @RandoopStrings(strings = {"n-e!x*t#T.o[k}e?n", "h-o$l(a", "m!u|n°d,o", ";hel-lo-", "!wo&rl/d", "app--le", "banana"})
+						  NumberFormatStringTokenizer tok){
 		Assume.that(NumberFormatStringTokenizerTest.EPAPrecondition(tok));
 		Gson gson = new Gson();
 		NumberFormatStringTokenizer obj2 = gson.fromJson(gson.toJson(tok), NumberFormatStringTokenizer.class);

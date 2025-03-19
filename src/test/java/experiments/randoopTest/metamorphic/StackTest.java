@@ -24,7 +24,7 @@ public class StackTest {
 	}
 
 	@Property
-	public void test1(@ForAll @UseMethods(methods = {"push"}) Stack<Integer> s){
+	public void test1(@ForAll @UseMethods(methods = {"addElement"}) Stack<Integer> s){
 		Assume.that(StackTest.EPAPrecondition(s));
 		Gson gson = new Gson();
 		Type stackType = new TypeToken<Stack<Integer>>() {}.getType();

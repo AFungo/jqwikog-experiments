@@ -33,6 +33,8 @@ import net.jqwik.api.randoop.*;
 
 import org.assertj.core.api.*;
 
+import java.util.ArrayList;
+
 public class PolygonPropertiesTest {
 
 	public static boolean polygonIsConvex(Object o){
@@ -45,11 +47,10 @@ public class PolygonPropertiesTest {
 	//@AssumeMethod(className = PolygonPropertiesTest.class, methodName = "polygonIsConvex")
 	@Property
 	public void convexity(
-        @ForAll Polygon polygon,
+        @ForAll @Deps(classes = {ArrayList.class, Point.class}) Polygon polygon,
 		@ForAll Point p,
 		@ForAll Point q,
 		@ForAll double alpha) {
-
 		Assume.that(PolygonPropertiesTest.polygonIsConvex(polygon));
 		Assume.that(polygon.contains(p));
 		Assume.that(polygon.contains(q));
