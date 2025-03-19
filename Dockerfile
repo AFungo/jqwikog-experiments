@@ -1,11 +1,12 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 LABEL authors="augusto"
 
 # Set environment variables to avoid interactive prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update package lists and install prerequisites
-RUN apt-get update && \
+RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
+    apt-get update && \
     apt-get install -y software-properties-common curl wget && \
     apt-get clean
 
