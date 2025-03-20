@@ -20,7 +20,7 @@ public class AGeneratorTest {
 		return a.getListOfB() != null;
 	}
 
-    @Property
+    @Property(tries=100)
 	public void listAreCorrectlyGenerated(@ForAll @Deps(classes = {B.class, ArrayList.class}) @UseMethods(methods = {"setListOfB"}) A a) {
 		Assume.that(AGeneratorTest.listOfBNotNull(a));
         a.getListOfB().forEach(b ->

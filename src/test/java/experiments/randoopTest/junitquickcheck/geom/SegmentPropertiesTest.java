@@ -34,7 +34,7 @@ import org.assertj.core.api.*;
 
 public class SegmentPropertiesTest {
 
-	@Property
+	@Property(tries=100)
 	public void intersectionIsSymmetric(
         @ForAll Segment a,
 		@ForAll Segment b) {

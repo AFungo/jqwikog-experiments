@@ -30,26 +30,26 @@ def run_experiment(script_path, file_path, timeout=60):
 
     return execution_time
 
-# experiments = ["PatriciaTrieTest.testPrefixMap", "PatriciaTrieTest.testCopy",
-#                "DateTest.dateAfterTest", "DateTest.changeYearTest", "DateTest.longMonthTest" ,
-#                "DateTest.mediumMonthTest", "DateTest.februaryMonthTest",
-#                "junitquickcheck.geom.PolygonPropertiesTest.convexity", "junitquickcheck.counter.CounterPropertiesTest.incrementing", "junitquickcheck.counter.CounterPropertiesTest.decrementing",
-#                "junitquickcheck.crypto.SymmetricKeyCryptoPropertiesTest.decryptReversesEncrypt", "junitquickcheck.dummy.AGeneratorTest.listAreCorrectlyGenerated",
-#                "junitquickcheck.geom.SegmentPropertiesTest.intersectionIsSymmetric", "junitquickcheck.money.DollarsAndCentsPropertiesTest.roundingDown",
-#                "junitquickcheck.money.DollarsAndCentsPropertiesTest.roundingUp",
-#                "BitSetTest.flipTest", "NodeCachingLinkedListTest.nclTest",
-#                "StreamGraphTest.testVector2DotProduct", "StreamGraphTest.testVector2Normalize", "StreamGraphTest.testWelshPowellColoring",
-#                "TreeTest.treeContainsTest", "metamorphic.NumberFormatStringTokenizerTest.test1", "metamorphic.NumberFormatStringTokenizerTest.test2",
-#                "metamorphic.StackArTest.test1", "metamorphic.StackTest.test1",
-#                "PilasTest.pilaSizeTest"
-#                ]
-
 experiments = ["PatriciaTrieTest.testPrefixMap", "PatriciaTrieTest.testCopy",
-               "junitquickcheck.geom.PolygonPropertiesTest.convexity","junitquickcheck.crypto.SymmetricKeyCryptoPropertiesTest.decryptReversesEncrypt",
-               "StreamGraphTest.testVector2DotProduct", "StreamGraphTest.testWelshPowellColoring",
-               "metamorphic.NumberFormatStringTokenizerTest.test1", "metamorphic.NumberFormatStringTokenizerTest.test2",
-               "metamorphic.StackTest.test1"
+               "DateTest.dateAfterTest", "DateTest.changeYearTest", "DateTest.longMonthTest" ,
+               "DateTest.mediumMonthTest", "DateTest.februaryMonthTest",
+               "junitquickcheck.geom.PolygonPropertiesTest.convexity", "junitquickcheck.counter.CounterPropertiesTest.incrementing", "junitquickcheck.counter.CounterPropertiesTest.decrementing",
+               "junitquickcheck.crypto.SymmetricKeyCryptoPropertiesTest.decryptReversesEncrypt", "junitquickcheck.dummy.AGeneratorTest.listAreCorrectlyGenerated",
+               "junitquickcheck.geom.SegmentPropertiesTest.intersectionIsSymmetric", "junitquickcheck.money.DollarsAndCentsPropertiesTest.roundingDown",
+               "junitquickcheck.money.DollarsAndCentsPropertiesTest.roundingUp",
+               "BitSetTest.flipTest", "NodeCachingLinkedListTest.nclTest",
+               "StreamGraphTest.testVector2DotProduct", "StreamGraphTest.testVector2Normalize", "StreamGraphTest.testWelshPowellColoring",
+               "TreeTest.treeContainsTest", "metamorphic.NumberFormatStringTokenizerTest.test1", "metamorphic.NumberFormatStringTokenizerTest.test2",
+               "metamorphic.StackArTest.test1", "metamorphic.StackTest.test1",
+               "PilasTest.pilaSizeTest"
                ]
+
+# experiments = ["PatriciaTrieTest.testPrefixMap", "PatriciaTrieTest.testCopy",
+#                "junitquickcheck.geom.PolygonPropertiesTest.convexity","junitquickcheck.crypto.SymmetricKeyCryptoPropertiesTest.decryptReversesEncrypt",
+#                "StreamGraphTest.testVector2DotProduct", "StreamGraphTest.testWelshPowellColoring",
+#                "metamorphic.NumberFormatStringTokenizerTest.test1", "metamorphic.NumberFormatStringTokenizerTest.test2",
+#                "metamorphic.StackTest.test1"
+#                ]
 
 #"JgraphtTest.testPrim"
 
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     # Example usage:
     script_path = "./experiments_runner.sh"
     for e in experiments:
-        run_experiment(script_path, "experiments.randoopTest." + e, timeout=60*10)
+        run_experiment(script_path, "experiments.randoopTest." + e, timeout=60*5)

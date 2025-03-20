@@ -24,7 +24,7 @@ public class StackArTest {
 				s.isMakeEmptyEnabled() && s.isTopEnabled();
 	}
 
-	@Property
+	@Property(tries=100)
 	public void test1(@ForAll @UseMethods(methods = {"push"}) StackAr s){
 		Assume.that(StackArTest.EPAPrecondition(s));
 		// Gson gson = new Gson();

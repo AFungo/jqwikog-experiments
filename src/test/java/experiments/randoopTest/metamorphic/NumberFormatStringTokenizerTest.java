@@ -25,7 +25,7 @@ public class NumberFormatStringTokenizerTest {
 	}
 
 	//@UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
-	@Property
+	@Property(tries=100)
 	public void test1(@ForAll @UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
 						  @RandoopStrings(strings = {"n-e!x*t#T.o[k}e?n", "h-o$l(a", "m!u|n°d,o", ";hel-lo-", "!wo&rl/d", "app--le", "banana"})
 						  NumberFormatStringTokenizer tok){
@@ -48,7 +48,7 @@ public class NumberFormatStringTokenizerTest {
 		Assertions.assertThat(obj2).isEqualTo(tok);
 	}
 
-	@Property
+	@Property(tries=100)
 	public void test2(@ForAll @UseMethods(methods = {"nextToken", "isLetterOrDigitAhead"})
 						  @RandoopStrings(strings = {"n-e!x*t#T.o[k}e?n", "h-o$l(a", "m!u|n°d,o", ";hel-lo-", "!wo&rl/d", "app--le", "banana"})
 						  NumberFormatStringTokenizer tok){

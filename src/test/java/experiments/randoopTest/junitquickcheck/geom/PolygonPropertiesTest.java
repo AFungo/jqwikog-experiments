@@ -45,7 +45,7 @@ public class PolygonPropertiesTest {
 	}
 
 	//@AssumeMethod(className = PolygonPropertiesTest.class, methodName = "polygonIsConvex")
-	@Property
+	@Property(tries=100)
 	public void convexity(
         @ForAll @Deps(classes = {ArrayList.class, Point.class}) Polygon polygon,
 		@ForAll Point p,

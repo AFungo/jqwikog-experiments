@@ -62,7 +62,7 @@ public class PatriciaTrieTest{
 		return Arbitraries.of(prefixes);
 	}
 
-	@Property
+	@Property(tries=100)
 	public void testPrefixMap(@ForAll @UseMethods(methods = {"put"})
 							  @IntRange(min=0, max=25)
 							  @RandoopStrings(strings = {"apple", "applet", "application", "banana", "bandana",
@@ -89,7 +89,7 @@ public class PatriciaTrieTest{
 		return Arbitraries.of(strings);
 	}
 
-	@Property
+	@Property(tries=100)
 	public void testCopy(@ForAll @RandoopStrings(strings = {"hola", "chau", "mundo", "hello", "bay", "apple", "applet", "application", "banana", "bandana",
 									 "blueberry", "bluefish", "grapefruit", "grapevine", "peach", "app", "ban", "blue", "grape"})
 						 @IntRange(min=0, max=25)

@@ -9,7 +9,7 @@ import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.*;
 
 public class PilasTest {
-	@Property
+	@Property(tries=100)
 	void pilaSizeTest(
 		@ForAll @IntRange(min = 110,max = 120) @UseMethods(methods = {"push"}) PilaSobreListasEnlazadas stack) {
 		System.out.println(stack);

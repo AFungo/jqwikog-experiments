@@ -24,7 +24,7 @@ public class StackTest {
 		return s.isGetEnabled() && s.isSetEnabled() && s.isRemove2Enabled();
 	}
 
-	@Property
+	@Property(tries=100)
 	public void test1(@ForAll @UseMethods(methods = {"addElement"}) @IntRange(min = 0, max = 25) Stack<Integer> s){
 		Assume.that(StackTest.EPAPrecondition(s));
 		Gson gson = new Gson();

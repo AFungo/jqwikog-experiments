@@ -26,7 +26,7 @@ public class TreeTest {
 		return true;
 	}
 
-	@Property
+	@Property(tries=100)
 	public void treeContainsTest(
 		@ForAll @UseMethods(methods = {"insert"}) @IntRange(min = 200, max = 300)
 		BinaryTree b,

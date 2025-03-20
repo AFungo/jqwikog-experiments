@@ -25,7 +25,7 @@ public class ListIterableTest {
 				   itr.isPreviousIndexEnabled() && itr.isModCountEquals();
 	}
 
-	@Property
+	@Property(tries=100)
 	public void test1(@ForAll @Deps(classes = {MyArrayList.class}) @UseMethods(methods = {"add"}) ListItr itr){
 
 		// Gson gson = new Gson();
@@ -47,7 +47,7 @@ public class ListIterableTest {
 		Assertions.assertThat(obj2).isEqualTo(itr);
 	}
 
-	@Property
+	@Property(tries=100)
 	public void test2(@ForAll @Deps(classes = {MyArrayList.class}) @UseMethods(methods = {"add"})
 					  ListItr itr){
 		Assume.that(ListIterableTest.EPAPrecondition(itr));

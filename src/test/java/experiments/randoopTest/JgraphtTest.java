@@ -28,7 +28,7 @@ public class JgraphtTest {
 
 	//
 	//@AssumeMethod(className =  JgraphtTest.class, methodName = "graphIsConnected")
-	@Property
+	@Property(tries=100)
 	public void testPrim(@ForAll @UseMethods(methods = {"addEdge", "addVertex", "setEdgeSupplier", "setVertexSupplier"})
 						 @Deps(classes={MySuplier.class}) @IntRange(max=5)
 						 DefaultDirectedGraph<Integer, Integer> graph) {

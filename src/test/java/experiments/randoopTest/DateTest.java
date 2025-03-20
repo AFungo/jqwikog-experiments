@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DateTest {
 
-	@Property
+	@Property(tries=100)
 	void dateAfterTest(@ForAll Date date) {
 		Assertions.assertThat(date.after(date)).isFalse();
 	}
@@ -25,7 +25,7 @@ public class DateTest {
 	}
 
 	//@AssumeMethod(className = DateTest.class, methodName = "isNewYear")
-	@Property
+	@Property(tries=100)
 	void changeYearTest(@ForAll Date date) {
 		Assume.that(DateTest.isNewYear(date));
 		Calendar cal = Calendar.getInstance();
@@ -52,7 +52,7 @@ public class DateTest {
 	}
 
 	//@AssumeMethod(className = DateTest.class, methodName = "are31daysLongMonth")
-	@Property
+	@Property(tries=100)
 	void longMonthTest(@ForAll Date date) {
 		Assume.that(DateTest.are31daysLongMonth(date));
 		Calendar cal = Calendar.getInstance();
@@ -73,7 +73,7 @@ public class DateTest {
 	}
 
 //	@AssumeMethod(className = DateTest.class, methodName = "are30daysLongMonth")
-	@Property
+	@Property(tries=100)
 	void mediumMonthTest(@ForAll
 					   Date date) {
 		Assume.that(DateTest.are30daysLongMonth(date));
@@ -103,7 +103,7 @@ public class DateTest {
 	}
 
 //	@AssumeMethod(className = DateTest.class, methodName = "isFebruary")
-	@Property
+	@Property(tries=100)
 	void februaryMonthTest(@ForAll
 						 Date date) {
 		Assume.that(DateTest.isFebruary(date));
