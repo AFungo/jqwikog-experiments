@@ -16,9 +16,10 @@ docker build -t experiments .
 docker run -it -v ~/path/to/experimentos.txt:/app/experimentos.txt experiments bash -c "./gradlew build -x :compileTestJava -x :test && python3 script_config.py > /app/experimentos.txt"
 ```
 
-This command:
-- Builds the project while skipping the `compileTestJava` and `test` tasks.
-- Runs `script_config.py`, redirecting its output to `experimentos.txt`.
+### 3. Run single example
+```sh
+docker run -it experiments bash -c "./gradlew test --tests "experiments.randoopTest.PilasTest.pilaSizeTest""
+```
 
 ## Requirements
 - **Docker** installed on your system.
