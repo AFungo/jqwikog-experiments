@@ -23,26 +23,18 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package experiments.randoopTest.junitquickcheck.counter;
+package junitquickcheck.number;
 
-import junitquickcheck.counter.*;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE_USE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import net.jqwik.api.*;
-import net.jqwik.api.randoop.UseMethods;
-import org.assertj.core.api.Assertions;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-
-
-public class CounterPropertiesTest {
-    @Property(tries=100)
-	public void incrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
-    }
-
-    @Property(tries=100)
-	public void decrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
-    }
+@Target({PARAMETER, FIELD, ANNOTATION_TYPE, TYPE_USE})
+@Retention(RUNTIME)
+public @interface NonNegative {
 }

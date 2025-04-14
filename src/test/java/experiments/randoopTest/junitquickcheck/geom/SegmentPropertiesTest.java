@@ -30,14 +30,16 @@ import junitquickcheck.geom.*;
 
 import net.jqwik.api.*;
 
+import net.jqwik.api.randoop.Deps;
+import net.jqwik.api.randoop.UseMethods;
 import org.assertj.core.api.*;
 
 public class SegmentPropertiesTest {
 
 	@Property(tries=100)
 	public void intersectionIsSymmetric(
-        @ForAll Segment a,
-		@ForAll Segment b) {
+        @ForAll @Deps(classes = {Point.class}) @UseMethods(methods = {""}) Segment a,
+		@ForAll @Deps(classes = {Point.class}) @UseMethods(methods = {""}) Segment b) {
 
 		Assertions.assertThat(a.intersects(b)).isEqualTo(b.intersects(a));
     }

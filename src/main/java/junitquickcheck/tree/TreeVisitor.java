@@ -23,26 +23,12 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package experiments.randoopTest.junitquickcheck.counter;
+package junitquickcheck.tree;
 
-import junitquickcheck.counter.*;
+public interface TreeVisitor {
+    Object visit(Empty empty);
 
-import net.jqwik.api.*;
-import net.jqwik.api.randoop.UseMethods;
-import org.assertj.core.api.Assertions;
+    Object visit(Leaf leaf);
 
-
-
-public class CounterPropertiesTest {
-    @Property(tries=100)
-	public void incrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
-    }
-
-    @Property(tries=100)
-	public void decrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
-    }
+    Object visit(Node node);
 }

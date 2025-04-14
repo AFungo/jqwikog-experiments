@@ -23,26 +23,29 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package experiments.randoopTest.junitquickcheck.counter;
+package junitquickcheck.dummy;
 
-import junitquickcheck.counter.*;
+import java.util.List;
 
-import net.jqwik.api.*;
-import net.jqwik.api.randoop.UseMethods;
-import org.assertj.core.api.Assertions;
+public class A {
+    private final String someString;
+    private final int someInt;
+    private List<B> listOfB;
 
-
-
-public class CounterPropertiesTest {
-    @Property(tries=100)
-	public void incrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
+    public A(String someString, int someInt) {
+        this.someString = someString;
+        this.someInt = someInt;
     }
 
-    @Property(tries=100)
-	public void decrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
+    public List<B> getListOfB() {
+        return listOfB;
+    }
+
+    public void setListOfB(List<B> listOfB) {
+        this.listOfB = listOfB;
+    }
+
+    @Override public String toString() {
+        return String.format("%s, %d, %s", someString, someInt, listOfB);
     }
 }

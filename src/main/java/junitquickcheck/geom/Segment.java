@@ -23,26 +23,45 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package experiments.randoopTest.junitquickcheck.counter;
-
-import junitquickcheck.counter.*;
-
-import net.jqwik.api.*;
-import net.jqwik.api.randoop.UseMethods;
-import org.assertj.core.api.Assertions;
+package junitquickcheck.geom;
 
 
+import static junitquickcheck.geom.Point.Orientation.COLLINEAR;
+import static junitquickcheck.geom.Point.orientation;
 
-public class CounterPropertiesTest {
-    @Property(tries=100)
-	public void incrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
+public final class Segment {
+    private Point a;
+     private Point b;
+
+    public Segment(Point a, Point b) {
+        this.a = a;
+        this.b = b;
     }
 
-    @Property(tries=100)
-	public void decrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
+    public boolean intersects(Segment other) {
+        Point.Orientation o1 = orientation(a, b, other.a);
+        Point.Orientation o2 = orientation(a, b, other.b);
+        Point.Orientation o3 = orientation(other.a, other.b, a);
+        Point.Orientation o4 = orientation(other.a, other.b, b);
+
+        // General case
+        if (o1 != o2 && o3 != o4)
+            return true;
+
+        // Special Cases
+        if (o1 == COLLINEAR && other.a.between(a, b))
+            return true;
+
+        if (o2 == COLLINEAR && other.b.between(a, b))
+            return true;
+
+        if (o3 == COLLINEAR && a.between(other.a, other.b))
+            return true;
+
+        return o4 == COLLINEAR && b.between(other.a, other.b);
+    }
+
+    @Override public String toString() {
+        return String.format("[%s %s]", a, b);
     }
 }

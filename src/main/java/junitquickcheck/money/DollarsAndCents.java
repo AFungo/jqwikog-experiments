@@ -23,26 +23,20 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package experiments.randoopTest.junitquickcheck.counter;
+package junitquickcheck.money;
 
-import junitquickcheck.counter.*;
+import static java.math.RoundingMode.HALF_EVEN;
 
-import net.jqwik.api.*;
-import net.jqwik.api.randoop.UseMethods;
-import org.assertj.core.api.Assertions;
+import java.math.BigDecimal;
 
+public final class DollarsAndCents {
+    private final BigDecimal amount;
 
-
-public class CounterPropertiesTest {
-    @Property(tries=100)
-	public void incrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count + 1).isEqualTo(c.increment().count());
+    public DollarsAndCents(BigDecimal amount) {
+        this.amount = amount.setScale(2, HALF_EVEN);
     }
 
-    @Property(tries=100)
-	public void decrementing(@ForAll @UseMethods(methods = {"increment"}) Counter c) {
-        int count = c.count();
-        Assertions.assertThat(count - 1).isEqualTo(c.decrement().count());
+    public BigDecimal toBigDecimal() {
+        return amount;
     }
 }
